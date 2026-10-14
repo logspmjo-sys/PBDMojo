@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Warga RT 03 - Grand Indraprasta</title>
+  <title>PBD RMPM - Warehouse System</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { 
-      margin: 0; 
-      padding: 0; 
       height: 100%; 
       overflow: hidden; 
-      background-color: #070c18; 
+      background-color: #070c18;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     iframe { 
       width: 100%; 
       height: 100%; 
       border: none; 
+      display: block;
     }
     #loading {
       position: fixed;
@@ -25,44 +26,56 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      color: #22d3ee;
-      font-family: sans-serif;
+      color: #d97706;
       z-index: 9999;
       transition: opacity 0.5s ease;
     }
     .spinner {
       width: 50px; height: 50px;
-      border: 4px solid rgba(34, 211, 238, 0.2);
-      border-top-color: #22d3ee;
+      border: 4px solid rgba(217, 119, 6, 0.2);
+      border-top-color: #d97706;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin-bottom: 15px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+    }
   </style>
 </head>
 <body>
   <div id="loading">
     <div class="spinner"></div>
-    <div>Memuat Dashboard...</div>
+    <div class="loading-text">Memuat PBD RMPM...</div>
   </div>
 
   <iframe 
-    id="dashboardFrame"
-    src="https://script.google.com/macros/s/AKfycbw_uiEBV9zCZoHXoPVmEnF5LlrdzAuB4cC4brbDANMiqghAKbyh7gNyI4xEat20C-XcUw/exec?authuser=0" 
-    allow="fullscreen; camera; microphone"
-    onload="document.getElementById('loading').style.opacity = '0'; setTimeout(function(){ document.getElementById('loading').style.display = 'none'; }, 500);">
+    id="pbdFrame"
+    src="https://script.google.com/macros/s/AKfycbzETp1TGkkuVwuiLTV8_3eFn-eaUNVBglMnBAaX79KrATIENbZBsagYjtTcKyWnK-H9MQ/exec"
+    allow="fullscreen; clipboard-write"
+    onload="hideLoading();">
   </iframe>
 
   <script>
+    function hideLoading() {
+      const loading = document.getElementById('loading');
+      loading.style.opacity = '0';
+      setTimeout(() => { loading.style.display = 'none'; }, 500);
+    }
+
+    // Auto refresh setiap 30 menit (biar session Apps Script tetap fresh)
     setInterval(function() {
-      var iframe = document.getElementById('dashboardFrame');
+      const iframe = document.getElementById('pbdFrame');
       iframe.src = iframe.src;
     }, 30 * 60 * 1000);
 
+    // Clear cache lama (kalau ada)
     if ('caches' in window) {
       caches.keys().then(function(names) {
-        for (var i = 0; i < names.length; i++) {
+        for (let i = 0; i < names.length; i++) {
           caches.delete(names[i]);
         }
       });
