@@ -6,12 +6,7 @@
   <title>PBD RMPM - Warehouse System</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { 
-      height: 100%; 
-      overflow: hidden; 
-      background-color: #0f172a;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    body, html { height: 100%; overflow: hidden; background-color: #0f172a; font-family: 'Segoe UI', sans-serif; }
     iframe { width: 100%; height: 100%; border: none; display: block; }
     #loading {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -32,10 +27,10 @@
     <div class="loading-text">Memuat Dashboard RMPM...</div>
   </div>
 
-  <!-- URL WAJIB PAKAI ?page=dash -->
+  <!-- ✅ PERHATIKAN: Ada ?page=dash di akhir URL -->
   <iframe 
     id="mainFrame"
-    src="https://script.google.com/macros/s/AKfycbzGzv9taftlipTbnWtD9uzdVopgTBXhc-2GJd5RdrpoS9-BnosET1_X8gstVANhzPo/exec?page=dash"
+    src="https://script.google.com/macros/s/AKfycbyzQ2mVxd_8fNde-Edb0QeXthWeVglZfV-zhmd-j_zIHbduIk9ALUiED-EN0CzwelVf/exec?page=dash"
     allow="fullscreen; clipboard-write"
     onload="hideLoading();">
   </iframe>
